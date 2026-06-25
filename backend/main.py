@@ -28,7 +28,6 @@ app.add_middleware(
 groq_client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 # Define your running MCP server endpoint
-# Adjust this to where your Google Tasks/Outlook MCP server is running
 MCP_SERVER_URL = os.getenv("MCP_SERVER_URL", ",http://127.0.0.1:8000")
 
 @app.post("/api/voice")
@@ -59,7 +58,6 @@ async def process_voice(file: UploadFile = File(...)):
 
         # 3. Agentic Routing Loop (LLaMA 3.1 Tool Call Integration)
         # Note: For simplicity here, we use prompt engineering to match intent.
-        # You can expand this into full tool calling using the MCP Client SDK.
         system_prompt = f"""You are Jarvis, a highly intelligent personal assistant.
         You have access to an Outlook and Google Tasks MCP server running at {MCP_SERVER_URL}.
         Be concise, clear, and direct in your responses."""
